@@ -1,0 +1,10 @@
+const express = require('express');
+const router = express.Router();
+const authController = require('../controllers/authController');
+const authMiddleware = require('../middleware/authMiddleware');
+router.post('/citizen/login',authController.login);
+router.get('/citizen/me',authMiddleware,authController.getMe);
+router.post('/citizen/logout',authMiddleware,authController.logout);
+router.post('/citizen/register',authController.register);
+router.get('/zones',authController.getZones);
+module.exports = router;
