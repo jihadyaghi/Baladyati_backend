@@ -26,6 +26,7 @@ const loginLimiter = rateLimit({
 app.use(express.json({ limit: '1mb' }));
 app.use(express.urlencoded({ extended: true }));
 app.use('/api/auth', loginLimiter, authRoutes);
+app.use('/api/home', homeRoutes);
 app.get('/api/health', (req, res) => {
   res.json({
     status:    'ok',
@@ -40,7 +41,6 @@ app.use((err, req, res, next) => {
   console.error('[Unhandled Error]', err);
   res.status(500).json({ success: false, message: 'Internal server error.' });
 });
-app.use('/api/home', homeRoutes);
 app.listen(PORT, () => {
   console.log(`Baladiyati API  →  http://localhost:${PORT}`);
 });
