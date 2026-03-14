@@ -1,0 +1,11 @@
+const express = require('express');
+const router = express.Router();
+const requestController = require('../controllers/requestController');
+const authMiddlware = require('../middleware/authMiddleware');
+router.use(authMiddlware);
+router.get('/',requestController.getMyRequests);
+router.get('/document-types',requestController.getDocumentTypes);
+router.get('/:id',requestController.getRequestsById);
+router.post('/',requestController.createRequest);
+router.delete('/:id',requestController.cancelRequest);
+module.exports = router;
